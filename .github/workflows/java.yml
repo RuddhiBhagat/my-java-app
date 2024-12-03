@@ -20,7 +20,7 @@ jobs:
       run: ls -la
  
     - name: Compile Java program
-      run: javac  HelloWorld.java
+      run: javac  App.java
  
     - name: Run Java program
-      run: java HelloWorld
+      run: java App
