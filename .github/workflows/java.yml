@@ -1,45 +1,26 @@
-name: Java CI with Maven
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+name: Java CI
+ 
+on: [push]
+ 
 jobs:
   build:
-    runs-on: ubuntu-latest  # You can change this to 'macos-latest' or 'windows-latest' if needed
-
+    runs-on: ubuntu-latest
+ 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
-
-    - name: Set up JDK 11 (Temurin)
+ 
+    - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'temurin'  # Ensure this is 'temurin'
-
-    - name: Install Maven
-      run: |
-        sudo apt update
-        sudo apt install -y maven
-        mvn -v  # Verify Maven installation
-
-    - name: Cache Maven dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-
-    - name: Build with Maven
-      run: mvn clean install
-
-    - name: Run the Java application (JAR)
-      run: java -jar target/my-java-app-1.0-SNAPSHOT.jar
-      env:
-        MY_ENV_VAR: ${{ secrets.MY_ENV_VAR }}
+        distribution: 'temurin'
+ 
+    - name: List files in the directory
+      run: ls -la
+ 
+    - name: Compile Java program
+      run: javac  HelloWorld.java
+ 
+    - name: Run Java program
+      run: java HelloWorld
