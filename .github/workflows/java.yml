@@ -16,14 +16,29 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up JDK 11
+    - name: Set up JDK 11 (Adoptium)
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'adoptopenjdk'
+        distribution: 'adoptium'
+
+    - name: Set up Maven
+      uses: actions/setup-maven@v2
+      with:
+        maven-version: '3.8.1'  # Specify the version of Maven you want to use
+
+    - name: Cache Maven dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
 
     - name: Build with Maven
       run: mvn clean install
 
     - name: Run the Java application (JAR)
       run: java -jar target/my-java-app-1.0-SNAPSHOT.jar
+      env:
+        MY_ENV_VAR: ${{ secrets.MY_ENV_VAR }}
