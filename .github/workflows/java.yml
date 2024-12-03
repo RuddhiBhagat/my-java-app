@@ -10,17 +10,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # You can use other runners like macOS or windows if needed
+    runs-on: ubuntu-latest  # You can change this to 'macos-latest' or 'windows-latest' if needed
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up JDK 11 (Adoptium)
+    - name: Set up JDK 11 (Temurin)
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'temurin'
+        distribution: 'temurin'  # Ensure this is 'temurin'
 
     - name: Install Maven
       run: |
