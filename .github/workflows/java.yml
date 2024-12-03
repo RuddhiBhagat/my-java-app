@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # You can use other runners like macOS or windows if needed
 
     steps:
     - name: Checkout code
@@ -22,10 +22,11 @@ jobs:
         java-version: '11'
         distribution: 'adoptium'
 
-    - name: Set up Maven
-      uses: actions/setup-maven@v2
-      with:
-        maven-version: '3.8.1'  # Specify the version of Maven you want to use
+    - name: Install Maven
+      run: |
+        sudo apt update
+        sudo apt install -y maven
+        mvn -v  # Verify Maven installation
 
     - name: Cache Maven dependencies
       uses: actions/cache@v2
