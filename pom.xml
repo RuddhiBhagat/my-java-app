@@ -9,11 +9,11 @@
     <packaging>jar</packaging>
 
     <dependencies>
-       <dependency>
-        <groupId>io.github.cdimascio</groupId>
-        <artifactId>java-dotenv</artifactId>
-        <version>5.2.2</version>
-    </dependency>
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>java-dotenv</artifactId>
+            <version>5.2.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -29,26 +29,22 @@
                 </configuration>
             </plugin>
 
-            <build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-exec-plugin</artifactId>
-            <version>3.1.0</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>java</goal>
-                    </goals>
-                    <configuration>
-                        <mainClass>App</mainClass>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-
-
+            <!-- Maven Exec Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-exec-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>App</mainClass> <!-- This should point to the main class -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!-- Maven Jar Plugin -->
             <plugin>
@@ -58,7 +54,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Main-Class>App</Main-Class> <!-- Ensure this is correct -->
+                            <Main-Class>App</Main-Class> <!-- Ensure this points to your main class -->
                         </manifestEntries>
                     </archive>
                 </configuration>
