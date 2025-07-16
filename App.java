@@ -9,6 +9,6 @@ public class App {
         // Print out the values to confirm they're being loaded
         System.out.println("MY_VARIABLE: " + myVariable);
         System.out.println("MY_SECRET_KEY: " + mySecretKey);
-        System.out.println("Hello,World!");
+        System.out.println("Hello,World");
     }
 }
